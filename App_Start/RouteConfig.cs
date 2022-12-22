@@ -24,6 +24,11 @@ namespace CustomerDashBoardApp
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Customers", action = "Index", id = UrlParameter.Optional }
             );
+            routes.MapRoute(
+                name: "Students",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "Employee", action = "Index", id = UrlParameter.Optional }
+            );
         }
     }
 }

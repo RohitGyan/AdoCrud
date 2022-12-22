@@ -21,45 +21,18 @@ namespace CustomerDashBoardApp.Controllers
             for (int i = 0; i < dtResult.Rows.Count; i++)
             {
                 Employee employee = new Employee(); //model
-                employee.student_id = Convert.ToInt32(dtResult.Rows[i]["Id"]);
-
-                employee.student_name = dtResult.Rows[i]["FirstName"].ToString();
-                employee.student_age = Convert.ToInt32(dtResult.Rows[i]["Age"]);
-                employee.student_gender = dtResult.Rows[i]["Contact"].ToString();
-               
+                employee.student_id = Convert.ToInt32(dtResult.Rows[i]["student_id"]);
+                employee.student_name = dtResult.Rows[i]["student_name"].ToString();
+                employee.student_age = Convert.ToInt32(dtResult.Rows[i]["student_age"]);
+                employee.student_gender = dtResult.Rows[i]["student_gender"].ToString();
                 employeeList.Add(employee);
             }
             return View(employeeList);
         }
 
-        // GET: Employee/Details/5
-        public ActionResult Details(int id)
-        {
-
-            DataTable dt = db.GetEmployeeById(id);
-            return View("Edit", dt);
-
-            // //CRUD crud = new CRUD();
-            // DataTable dt = db.GetEmployeeById(id);
-            // return View("Edit", dt);
-
-
-
-            // DataTable dtResult = db.GetEmployeeById(id);
-            //// Employee employee = new Employee();
-            // if (id == null)
-            // {
-            //     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            // }
-            // //Employee employee = db.GetEmployeeById(id);
-            // if (dtResult == null)
-            // {
-            //     return HttpNotFound();
-            //  }
-           
-        }
 
         // GET: Employee/Create
+        [HttpGet]
         public ActionResult Create()
         {
             return View();
@@ -68,26 +41,52 @@ namespace CustomerDashBoardApp.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
 
-        public ActionResult Create([Bind(Include = "students_id,students_name,students_age,students_gender")] Employee employee)
+        public ActionResult Create([Bind(Include = "student_name,student_age,student_gender")] Employee employee)
         {
-     
+
             if (ModelState.IsValid)
             {
-                employee.student_id = Convert.ToInt32(employee.student_id);
-
-                
-
-                employee.student_name = Convert.ToString(employee.student_name);
-                employee.student_age = Convert.ToInt32(employee.student_age);
-                employee.student_gender = Convert.ToString(employee.student_gender);
-                int status = db.UpdateEmployee(employee.student_name, employee.student_age,employee.student_gender);
+               // employee.student_id = Convert.ToInt32(employee.student_id);
 
 
 
-                return View(status);
+                //employee.student_name = Convert.ToString(employee.student_name);
+                //employee.student_age = Convert.ToInt32(employee.student_age);
+               // employee.student_gender = Convert.ToString(employee.student_gender);
+                int status = db.CreateEmployee(employee.student_name, employee.student_age, employee.student_gender);
+                ViewBag.StatusMessage = "Employeee Created sucessfully";
             }
             return RedirectToAction("Index");
         }
+
+
+        // GET: Employee/Details/5
+        public ActionResult Details(int id)
+        {
+
+            DataTable dt = db.GetEmployeeById(id);
+            Employee employee = new Employee();
+            employee.student_id = Convert.ToInt32(dt.Rows[0]["student_id"]);
+            employee.student_name = Convert.ToString(dt.Rows[0]["student_name"]);
+            employee.student_age = Convert.ToInt32(dt.Rows[0]["student_age"]);
+            employee.student_gender = Convert.ToString(dt.Rows[0]["student_gender"]);
+            // employee.Id = Convert.ToInt32(employee.Id);
+
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            if (employee.student_id == null)
+            {
+                return HttpNotFound();
+            }
+            return View(employee);
+
+        }
+
+
+       
 
         [HttpGet]
         public ActionResult Edit(int id)
@@ -95,6 +94,9 @@ namespace CustomerDashBoardApp.Controllers
             DataTable dt = db.GetEmployeeById(id);
             Employee employee = new Employee();
             employee.student_id = Convert.ToInt32(dt.Rows[0]["student_id"]);
+            employee.student_name = Convert.ToString(dt.Rows[0]["student_name"]);
+            employee.student_age = Convert.ToInt32(dt.Rows[0]["student_age"]);
+            employee.student_gender = Convert.ToString(dt.Rows[0]["student_gender"]);
 
             if (id == null)
             {
@@ -109,50 +111,51 @@ namespace CustomerDashBoardApp.Controllers
         }
 
 
-
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,Contact,Email")] Employee employee)
+        public ActionResult Edit([Bind(Include = "student_name,student_age,student_gender")] Employee employee)
         {
-
-
 
             if (ModelState.IsValid)
             {
-                employee.student_id = Convert.ToInt32(employee.student_id);
+                //employee.student_id = Convert.ToInt32(employee.student_id);
+                //employee.student_name = Convert.ToString(employee.student_name);
+                //employee.student_age = Convert.ToInt32(employee.student_age);
+                //employee.student_gender = Convert.ToString(employee.student_gender);
+                int status = db.UpdateEmployee(employee.student_id,employee.student_name, employee.student_age, employee.student_gender);
 
-
-
-                employee.student_name = Convert.ToString(employee.student_name);
-                employee.student_age = Convert.ToInt32(employee.student_age);
-                employee.student_gender = Convert.ToString(employee.student_gender);
-                int status = db.UpdateEmployee(employee.student_id, employee.student_name, employee.student_age, employee.student_gender);
-
-
-
-                return View(employee);
-
-
-
+                ViewBag.Status = "Updated Employee Details Sucessfully";
             }
             return RedirectToAction("Index");
-
-
-
         }
 
 
 
-        public ActionResult Delete(int student_id)
+        public ActionResult Delete(int id)
         {
-            // CRUDModel model = new CRUDModel();
-            db.Delete(student_id);
+            //CRUDModel model = new CRUDModel();
+            db.Delete(id);
             return RedirectToAction("Index");
         }
 
+        [HttpPost]
+        public ActionResult Delete(int student_id, FormCollection collection)
+        {
+            try
+            {
+                // TODO: Add delete logic here
 
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
 
-        
+        private class CRUDModel
+        {
+        }
     }
 }
 

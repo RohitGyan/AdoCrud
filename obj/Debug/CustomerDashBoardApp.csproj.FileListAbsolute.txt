@@ -76,7 +76,6 @@ C:\Users\RohitRameshKarbari\source\repos\CustomerDashBoardApp\CustomerDashBoardA
 C:\Users\RohitRameshKarbari\source\repos\CustomerDashBoardApp\CustomerDashBoardApp\bin\Newtonsoft.Json.xml
 C:\Users\RohitRameshKarbari\source\repos\CustomerDashBoardApp\CustomerDashBoardApp\bin\Antlr3.Runtime.pdb
 C:\Users\RohitRameshKarbari\source\repos\CustomerDashBoardApp\CustomerDashBoardApp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\RohitRameshKarbari\source\repos\CustomerDashBoardApp\CustomerDashBoardApp\obj\Debug\CustomerDashBoardApp.csproj.AssemblyReference.cache
 C:\Users\RohitRameshKarbari\source\repos\CustomerDashBoardApp\CustomerDashBoardApp\obj\Debug\CustomerDashBoardApp.csproj.CoreCompileInputs.cache
 C:\Users\RohitRameshKarbari\source\repos\CustomerDashBoardApp\CustomerDashBoardApp\obj\Debug\CustomerDashBoardApp.csproj.CopyComplete
 C:\Users\RohitRameshKarbari\source\repos\CustomerDashBoardApp\CustomerDashBoardApp\obj\Debug\CustomerDashBoardApp.dll

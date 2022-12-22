@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -39,6 +40,25 @@ namespace CustomerDashBoardApp.Controllers
         public ActionResult Create()
         {
             return View();
+        }
+        public int CreateEmployee(int Id, string FirstName, string LastName, string Contact, string Email)
+        {
+            string strConString = @"Data Source=IN-B2WMGK3\SQLEXPRESS;Initial Catalog=paginationDb;User Id=sa; Password=sa";
+
+
+
+            using (SqlConnection con = new SqlConnection(strConString))
+            {
+                con.Open();
+                string query = "Insert into Customers FirstName=@firstname, LastName=@lastname , Contact=@contact, Email=@email where Id=@id";
+                SqlCommand cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@firstname", FirstName);
+                cmd.Parameters.AddWithValue("@lastname", LastName);
+                cmd.Parameters.AddWithValue("@contact", Contact);
+                cmd.Parameters.AddWithValue("@email", Email);
+                cmd.Parameters.AddWithValue("@id", Id);
+                return cmd.ExecuteNonQuery();
+            }
         }
 
         // POST: Customers/Create
@@ -125,3 +145,5 @@ namespace CustomerDashBoardApp.Controllers
         }
     }
 }
+
+
