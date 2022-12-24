@@ -80,3 +80,4 @@ C:\Users\RohitRameshKarbari\source\repos\CustomerDashBoardApp\CustomerDashBoardA
 C:\Users\RohitRameshKarbari\source\repos\CustomerDashBoardApp\CustomerDashBoardApp\obj\Debug\CustomerDashBoardApp.csproj.CopyComplete
 C:\Users\RohitRameshKarbari\source\repos\CustomerDashBoardApp\CustomerDashBoardApp\obj\Debug\CustomerDashBoardApp.dll
 C:\Users\RohitRameshKarbari\source\repos\CustomerDashBoardApp\CustomerDashBoardApp\obj\Debug\CustomerDashBoardApp.pdb
+C:\Users\RohitRameshKarbari\source\repos\CustomerDashBoardApp\CustomerDashBoardApp\obj\Debug\CustomerDashBoardApp.csproj.AssemblyReference.cache

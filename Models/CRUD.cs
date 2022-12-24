@@ -54,7 +54,7 @@ namespace CustomerDashBoardApp.Models
             }
         }
 
-        public int UpdateEmployee(int students_id,string student_name, int student_age, string student_gender)
+        public int UpdateEmployee(Employee employee)
         {
             // strConString = @"Data Source=IN-B2WMGK3\SQLEXPRESS;Initial Catalog=Testdb;User Id=sa;Password=sa";
 
@@ -65,10 +65,10 @@ namespace CustomerDashBoardApp.Models
                 sqlConnection.Open();
                 string query = "UPDATE tblStudent SET student_name=@student_name, student_age=@student_age , student_gender=@student_gender  WHERE student_id=@student_id";
                 SqlCommand cmd = new SqlCommand(query, sqlConnection);
-                cmd.Parameters.AddWithValue("@student_name", student_name);
-                cmd.Parameters.AddWithValue("@student_age", student_age);
-                cmd.Parameters.AddWithValue("@student_gender", student_gender);
-                cmd.Parameters.AddWithValue("@student_id", students_id);
+                cmd.Parameters.AddWithValue("@student_name", employee.student_name);
+                cmd.Parameters.AddWithValue("@student_age", employee.student_age);
+                cmd.Parameters.AddWithValue("@student_gender", employee.student_gender);
+                cmd.Parameters.AddWithValue("@student_id", employee.student_id);
                 return cmd.ExecuteNonQuery();
             }
         }

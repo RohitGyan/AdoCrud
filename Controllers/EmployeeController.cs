@@ -113,7 +113,7 @@ namespace CustomerDashBoardApp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "student_name,student_age,student_gender")] Employee employee)
+        public ActionResult Edit([Bind(Include = "student_id,student_name,student_age,student_gender")] Employee employee)
         {
 
             if (ModelState.IsValid)
@@ -122,7 +122,7 @@ namespace CustomerDashBoardApp.Controllers
                 //employee.student_name = Convert.ToString(employee.student_name);
                 //employee.student_age = Convert.ToInt32(employee.student_age);
                 //employee.student_gender = Convert.ToString(employee.student_gender);
-                int status = db.UpdateEmployee(employee.student_id,employee.student_name, employee.student_age, employee.student_gender);
+                int status = db.UpdateEmployee(employee);
 
                 ViewBag.Status = "Updated Employee Details Sucessfully";
             }
